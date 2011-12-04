@@ -78,6 +78,12 @@
             android:drawableTop="@drawable/dashboard_settings"
             android:text="@string/dashboard_settings" />
 
+        <Button
+            style="@style/DashboardButton"
+            android:drawableTop="@drawable/dashboard_exit"
+            android:onClick="startExit"
+            android:text="@string/dashboard_exit" />
+
     </ger.geosoft.dashboard.DashboardLayout>
 
 </LinearLayout>
