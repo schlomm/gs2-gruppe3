@@ -27,7 +27,8 @@
         </activity>
         <activity android:name=".activities.MeasureActivity"></activity>
         <activity android:name=".activities.ListActivity"></activity>
-        <activity android:name=".activities.LoginActivity" android:theme="@android:style/Theme.Light.NoTitleBar"></activity>     
+        <activity android:name=".activities.LoginActivity" android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+        <activity android:name=".activities.ManualMeasureActivity"></activity>     
     </application>
 
 </manifest>

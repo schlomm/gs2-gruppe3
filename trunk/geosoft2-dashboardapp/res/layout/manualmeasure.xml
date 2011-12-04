@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF" >
+
+    <TextView
+        android:id="@+id/manRatingTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pothole rating" 
+        android:textColor="#000000"/>
+
+    <RatingBar
+        android:id="@+id/manRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/addImageBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Image" />
+
+    <TextView
+        android:id="@+id/manDescriptionTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textColor="#000000" />
+
+    <EditText
+        android:id="@+id/manDescriptionEdit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/manSubmitBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
+
+</LinearLayout>

@@ -34,7 +34,7 @@ public class MeasureActivity extends Activity implements SensorEventListener, Lo
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.measurementactivity);
 		tv = (TextView)findViewById(R.id.measureTv);
-		
+
 		latitude = 0;
 		longitude = 0;
 		
@@ -118,4 +118,5 @@ public class MeasureActivity extends Activity implements SensorEventListener, Lo
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
