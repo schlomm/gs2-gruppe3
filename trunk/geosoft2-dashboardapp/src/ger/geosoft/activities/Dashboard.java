@@ -16,7 +16,7 @@ public class Dashboard extends Activity {
 	}
 	
 	public void startLogin(View v){
-		
+		startActivity(new Intent(Dashboard.this, LoginActivity.class));
 	}
 	
 	public void startManMeasure(View v){
