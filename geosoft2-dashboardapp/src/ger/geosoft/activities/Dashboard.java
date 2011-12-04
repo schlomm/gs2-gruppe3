@@ -34,4 +34,9 @@ public class Dashboard extends Activity {
 	public void startSettings(View v){
 		
 	}
+	
+	public void startExit(View v){
+		finish();
+		
+	}
 }
