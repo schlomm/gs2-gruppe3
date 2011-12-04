@@ -40,14 +40,14 @@ public class Dashboard extends Activity {
 	public void startExit(View v){
 
 		new AlertDialog.Builder( this )
-			.setTitle( "Sure?" )
-			.setMessage( "Are you sure you want to quit?" )
+			.setTitle("Sure?")
+			.setMessage("Are you sure you want to quit?")
 			.setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					finish();
 				}
 			})
-			.setNegativeButton( "No",null)
+			.setNegativeButton("No",null)
 			.show();
 		
 	}
