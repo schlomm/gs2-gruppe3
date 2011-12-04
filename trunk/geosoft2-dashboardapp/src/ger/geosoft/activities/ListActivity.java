@@ -39,7 +39,7 @@ public class ListActivity extends Activity{
 			String tmp = c.getInt(id)+",   "+c.getDouble(lat)+",   "+c.getDouble(lon)+",   "+c.getDouble(strength);
 			tv.setText(Html.fromHtml(""+tv.getText()+"</br>"+tmp));
 		}
-		
+		c.close();
 	}
 	
 	private void onCreateDBAndDBTabled() {
