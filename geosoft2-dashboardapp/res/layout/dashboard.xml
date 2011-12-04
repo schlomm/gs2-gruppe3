@@ -48,34 +48,34 @@
 
         <Button
             style="@style/DashboardButton"
-            android:drawableTop="@drawable/dashboard_login"
+            android:drawableTop="@drawable/dashboard_automeasure"
             android:onClick="startAutoMeasure"
             android:text="@string/dashboard_automeasure"
             />
 
         <Button
             style="@style/DashboardButton"
-            android:drawableTop="@drawable/dashboard_login"
+            android:drawableTop="@drawable/dashboard_manumeasure"
             android:onClick="startManMeasure"
             android:text="@string/dashboard_manumeasure" />
 
         <Button
             style="@style/DashboardButton"
-            android:drawableTop="@drawable/dashboard_login"
+            android:drawableTop="@drawable/dashboard_view"
             android:onClick="startViewer"
             android:text="@string/dashboard_viewmeasurements" />
 
         <Button
+            android:id="@+id/login_logout_button"
             style="@style/DashboardButton"
             android:drawableTop="@drawable/dashboard_login"
             android:onClick="startLogin"
             android:text="@string/dashboard_login" />
 
         <Button
-            android:id="@+id/login_logout_button"
             style="@style/DashboardButton"
             android:onClick="startSettings"
-            android:drawableTop="@drawable/dashboard_login"
+            android:drawableTop="@drawable/dashboard_settings"
             android:text="@string/dashboard_settings" />
 
     </ger.geosoft.dashboard.DashboardLayout>
