@@ -2,6 +2,7 @@ package ger.geosoft.activities;
 
 import ger.geosoft.R;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,7 +24,7 @@ public class Dashboard extends Activity {
 	}
 	
 	public void startAutoMeasure(View v){
-		
+		startActivity(new Intent(Dashboard.this, MeasureActivity.class));
 	}
 
 	public void startViewer(View v){
