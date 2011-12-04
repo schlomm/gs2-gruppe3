@@ -28,7 +28,7 @@ public class Dashboard extends Activity {
 	}
 
 	public void startViewer(View v){
-		
+		startActivity(new Intent(Dashboard.this, ListActivity.class));
 	}
 	
 	public void startSettings(View v){
