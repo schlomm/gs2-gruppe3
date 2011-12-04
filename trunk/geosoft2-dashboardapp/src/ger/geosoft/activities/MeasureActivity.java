@@ -2,6 +2,7 @@ package ger.geosoft.activities;
 
 import ger.geosoft.R;
 import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,6 +16,11 @@ public class MeasureActivity extends Activity implements SensorEventListener{
 	private SensorManager sensorManager;
 	private TextView tv;
 	
+	SQLiteDatabase myDB = null; 
+	final static String MY_DB_NAME = "geosoft";
+	final static String MY_DB_TABLE = "potholes";
+
+
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -25,6 +31,15 @@ public class MeasureActivity extends Activity implements SensorEventListener{
 		sensorManager.registerListener(this, sensorManager
 				.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 				SensorManager.SENSOR_DELAY_NORMAL);
+		
+		onCreateDBAndDBTabled();
+	}
+
+
+	private void onCreateDBAndDBTabled() {
+		myDB = this.openOrCreateDatabase(MY_DB_NAME, MODE_PRIVATE, null);
+	    myDB.execSQL("CREATE TABLE IF NOT EXISTS " + MY_DB_TABLE +"(id integer primary key autoincrement,lat double(20), lon double(20),strength double(20));");
+		
 	}
 
 
@@ -51,11 +66,12 @@ public class MeasureActivity extends Activity implements SensorEventListener{
 
 			if (accelationSquareRoot >= 2) {
 				Toast.makeText(this, "Schlagloch", Toast.LENGTH_SHORT).show();
+				myDB.execSQL("INSERT INTO "+MY_DB_TABLE+"(lat, lon, strength) VALUES ('52','7','"+accelationSquareRoot+"');");
 
 			}
-
+			
+			
 		}
-
 		
 	}
 }
