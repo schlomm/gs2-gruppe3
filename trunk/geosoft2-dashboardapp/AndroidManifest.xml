@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ger.geosoft"
+<manifest package="ger.geosoft"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-sdk android:minSdkVersion="8" />
 
@@ -26,6 +25,7 @@
             android:name=".activities.MainActivity" >
         </activity>
         <activity android:name=".activities.MeasureActivity"></activity>
+        <activity android:name=".activities.ListActivity"></activity>
         <activity android:name=".activities.LoginActivity" android:theme="@android:style/Theme.Light.NoTitleBar"></activity>     
     </application>
 
