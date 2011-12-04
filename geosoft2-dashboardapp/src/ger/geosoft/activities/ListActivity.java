@@ -30,10 +30,14 @@ public class ListActivity extends Activity{
 		int strength = c.getColumnIndex("strength");
 		c.moveToFirst();
 		
-		while(!c.isLast()){
+		if(c.getCount() > 0){
+			while(!c.isLast()){
+				String tmp = c.getInt(id)+",   "+c.getDouble(lat)+",   "+c.getDouble(lon)+",   "+c.getDouble(strength);
+				tv.setText(Html.fromHtml(""+tv.getText()+"</br>"+tmp));
+				c.moveToNext();
+			}
 			String tmp = c.getInt(id)+",   "+c.getDouble(lat)+",   "+c.getDouble(lon)+",   "+c.getDouble(strength);
 			tv.setText(Html.fromHtml(""+tv.getText()+"</br>"+tmp));
-			c.moveToNext();
 		}
 		
 	}
