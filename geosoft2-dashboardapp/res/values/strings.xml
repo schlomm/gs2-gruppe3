@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PotSpot</string>
+    <string name="dashboard_login">Login</string>
+    <string name="dashboard_settings">Settings</string>
+    <string name="dashboard_viewmeasurements">View</string>
+    <string name="dashboard_automeasure">Automatic</string>
+    <string name="dashboard_manumeasure">Manual</string>
+</resources>
