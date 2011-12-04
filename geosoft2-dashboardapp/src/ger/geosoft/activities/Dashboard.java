@@ -34,7 +34,8 @@ public class Dashboard extends Activity {
 	}
 	
 	public void startSettings(View v){
-		
+		//TODO Die Kartenansicht dem richtigen Menü zuordnen
+		startActivity(new Intent(Dashboard.this, MapActivity.class));
 	}
 	
 	public void startExit(View v){
