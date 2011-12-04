@@ -22,7 +22,7 @@ public class Dashboard extends Activity {
 	}
 	
 	public void startManMeasure(View v){
-		
+		startActivity(new Intent(Dashboard.this, ManualMeasureActivity.class));
 	}
 	
 	public void startAutoMeasure(View v){
