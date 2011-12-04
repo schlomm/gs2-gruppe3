@@ -66,17 +66,17 @@
             android:text="@string/dashboard_viewmeasurements" />
 
         <Button
+            style="@style/DashboardButton"
+            android:onClick="startSettings"
+            android:drawableTop="@drawable/dashboard_settings"
+            android:text="@string/dashboard_settings" />
+
+        <Button
             android:id="@+id/login_logout_button"
             style="@style/DashboardButton"
             android:drawableTop="@drawable/dashboard_login"
             android:onClick="startLogin"
             android:text="@string/dashboard_login" />
-
-        <Button
-            style="@style/DashboardButton"
-            android:onClick="startSettings"
-            android:drawableTop="@drawable/dashboard_settings"
-            android:text="@string/dashboard_settings" />
 
         <Button
             style="@style/DashboardButton"
