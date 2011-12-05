@@ -77,6 +77,11 @@ public class LoginActivity extends Activity {
 			case R.id.submitLoginButton:
 				authenticate();
 			break;
+			case R.id.notregistered:
+				Toast.makeText(getApplicationContext(), 
+    					"startActivity", 
+    					Toast.LENGTH_SHORT).show();
+			break;
 		}
 	}
 	
