@@ -18,6 +18,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,8 @@ public class MeasureActivity extends Activity implements SensorEventListener,
 	private Location location;
 	private double latitude, longitude;
 	private Criteria crit;
+
+	private boolean settingsShowing = false;
 
 	SQLiteDatabase myDB = null;
 	final static String MY_DB_NAME = "geosoft";
@@ -52,19 +55,19 @@ public class MeasureActivity extends Activity implements SensorEventListener,
 		crit = new Criteria();
 		crit.setAccuracy(Criteria.ACCURACY_FINE);
 
-		if (checkGpsAvailable()) {
-			locationManager.requestLocationUpdates(
-					locationManager.getBestProvider(crit, true), 1, 100, this);
-		} else {
-			createGpsDisabledAlert();
-		}
-
 		onCreateDBAndDBTabled();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
+
+		/*
+		 * this piece of code has to be here, because the onResume() Method is
+		 * also called after onCreate. Putting the check for the GPS here makes
+		 * shure the user does not get the AlertDialog twice and that the user
+		 * can not use the automatic Measurement without gps
+		 */
 		if (checkGpsAvailable()) {
 			locationManager.requestLocationUpdates(
 					locationManager.getBestProvider(crit, true), 1, 100, this);
@@ -83,26 +86,24 @@ public class MeasureActivity extends Activity implements SensorEventListener,
 	// disabled GPS
 	// and takes him to the GPS Settings
 	private void createGpsDisabledAlert() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Your GPS is disabled! Would you like to enable it?")
+		new AlertDialog.Builder(this)
+				.setMessage(
+						"It seems your GPS is disabled. Do you want to change that?")
 				.setCancelable(false)
-				.setPositiveButton("Enable GPS",
+				.setPositiveButton("Go to settings",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								showGpsOptions();
 							}
-						});
-		builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				finish();
-			}
-		});
-		AlertDialog alert = builder.create();
-		alert.show();
+						})
+				.setNegativeButton("No", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						finish();
+					}
+				}).show();
 	}
-	
-	
-	//This Method starts the Location Settings of Android
+
+	// This Method starts the Location Settings of Android
 	private void showGpsOptions() {
 		Intent gpsOptionsIntent = new Intent(
 				android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
