@@ -37,11 +37,11 @@ public class ListActivity extends Activity {
 		int lat = c.getColumnIndex("lat");
 		int lon = c.getColumnIndex("lon");
 		int strength = c.getColumnIndex("strength");
-		c.moveToFirst();
+//		c.moveToFirst();
 		
 
 		list.setAdapter(new SimpleCursorAdapter(ListActivity.this, R.layout.measurements_list_item, c,new String[]{"lat","lon","strength"} ,new int[]{R.id.lat,R.id.lon, R.id.stren}));
-		c.close();
+//		c.close();
 //		if(c.getCount() > 0){
 //			while(!c.isLast()){
 //				String tmp = c.getInt(id)+",   "+c.getDouble(lat)+",   "+c.getDouble(lon)+",   "+c.getDouble(strength);

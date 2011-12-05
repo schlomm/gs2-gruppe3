@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 
 public class Dashboard extends Activity {
@@ -40,7 +41,7 @@ public class Dashboard extends Activity {
 	
 	public void startExit(View v){
 
-		new AlertDialog.Builder( this )
+		new AlertDialog.Builder(this)
 			.setTitle("Sure?")
 			.setMessage("Are you sure you want to quit?")
 			.setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
