@@ -103,7 +103,7 @@ public class LoginActivity extends Activity {
 				public void run() {
 					try {
 						HttpClient httpClient = new DefaultHttpClient();
-						HttpPost postMethod = new HttpPost("http://giv-geosofta.uni-muenster.de/potholes/login.php");
+						HttpPost postMethod = new HttpPost(Store.url+"login.php");
 						ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>(2);
 				        parameters.add(new BasicNameValuePair("u", username.getText().toString()));
 				        parameters.add(new BasicNameValuePair("p", password.getText().toString()));
@@ -163,7 +163,7 @@ public class LoginActivity extends Activity {
 						case STATUS_OK:
 							Toast.makeText(
 									getApplicationContext(),
-									"Welcome !", Toast.LENGTH_LONG).show();
+									"Login successful", Toast.LENGTH_LONG).show();
 //							switch (getIntent().getExtras().getInt("startActivity")) {
 //							case START_MYCOURSES:
 //								startActivity(new Intent(getApplicationContext(), MyCourses.class));

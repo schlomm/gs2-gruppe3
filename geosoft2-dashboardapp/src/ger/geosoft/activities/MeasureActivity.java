@@ -146,6 +146,11 @@ public class MeasureActivity extends Activity implements SensorEventListener,
 			}
 		}
 	}
+	
+	@Override
+	public void onPause(){
+		
+	}
 
 	@Override
 	public void onLocationChanged(Location location) {
