@@ -31,6 +31,7 @@
         <activity android:name=".activities.MeasureActivity" android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity android:name=".activities.ListActivity"></activity>
         <activity android:name=".activities.LoginActivity" android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+        <activity android:name=".activities.RegisterActivity" android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity android:name=".activities.ManualMeasureActivity"></activity>
         <activity android:name=".activities.MapActivity"></activity>  
     </application>
