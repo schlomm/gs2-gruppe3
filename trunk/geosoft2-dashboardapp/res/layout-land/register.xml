@@ -36,7 +36,7 @@
         android:layout_alignBottom="@+id/dashboardTitle"
         android:layout_marginLeft="14dp"
         android:layout_toRightOf="@+id/dashboardTitle"
-        android:text=":Login"
+        android:text=":Register"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:typeface="serif" />
 
@@ -56,46 +56,53 @@
             android:inputType="textNoSuggestions|textEmailAddress" >
         </EditText>
 
-        <EditText
-            android:id="@+id/loginPassword"
-            style="@style/loginfield"
+        <LinearLayout
+            android:id="@+id/passwordsregisterlayoutland"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/loginUsername"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
-            android:hint="password"
-            android:imeOptions="actionGo"
-            android:inputType="textNoSuggestions|textPassword" >
-        </EditText>
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/loginPassword"
+                style="@style/loginfield"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_alignBaseline="@+id/loginPasswordAgain"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:hint="password"
+                android:inputType="textNoSuggestions|textPassword" >
+            </EditText>
+
+            <EditText
+                android:id="@+id/loginPasswordAgain"
+                style="@style/loginfield"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/loginPassword"
+                android:hint="retype password"
+                android:imeOptions="actionGo"
+                android:inputType="textNoSuggestions|textPassword" >
+            </EditText>
+        </LinearLayout>
 
         <Button
             android:id="@+id/submitLoginButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/loginPassword"
+            android:layout_below="@+id/passwordsregisterlayoutland"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="12dp"
             android:onClick="onClick"
-            android:text="login"
+            android:text="register"
             android:typeface="serif" >
         </Button>
-
-        <TextView
-            android:id="@+id/notregistered"
-            android:layout_width="fill_parent"
-            android:layout_height="64dp"
-            android:layout_below="@+id/submitLoginButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:clickable="true"
-            android:gravity="center"
-            android:onClick="onClick"
-            android:text="not registered? click here!"
-            android:textColor="@color/geosoft2grey"
-            android:textSize="10dp"
-            android:typeface="serif" />
     </RelativeLayout>
 
 </RelativeLayout>

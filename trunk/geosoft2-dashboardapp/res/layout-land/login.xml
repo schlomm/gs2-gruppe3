@@ -29,6 +29,17 @@
         android:background="@color/geosoft2grey" >
     </View>
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/dashboardTitle"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/dashboardTitle"
+        android:text=":Login"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:typeface="serif" />
+
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="wrap_content"
@@ -41,7 +52,7 @@
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="32dp"
-            android:hint="username"
+            android:hint="email address"
             android:inputType="textNoSuggestions|textEmailAddress" >
         </EditText>
 
@@ -76,16 +87,16 @@
             android:layout_height="32dp"
             android:layout_below="@+id/submitLoginButton"
             android:layout_centerHorizontal="true"
-			android:gravity="center_horizontal|bottom"
+            android:layout_marginBottom="0dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:textSize="10dp"
             android:clickable="true"
+            android:gravity="center_horizontal|bottom"
             android:onClick="onClick"
             android:text="not registered? click here!"
             android:textColor="@color/geosoft2grey"
+            android:textSize="10dp"
             android:typeface="serif" />
     </RelativeLayout>
 
