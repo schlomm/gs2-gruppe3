@@ -96,7 +96,7 @@
             android:onClick="onClick"
             android:text="not registered? click here!"
             android:textColor="@color/geosoft2grey"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:typeface="serif" />
     </RelativeLayout>
 

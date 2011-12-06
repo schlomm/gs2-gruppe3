@@ -47,7 +47,7 @@
         android:layout_centerInParent="true" >
 
         <EditText
-            android:id="@+id/loginUsername"
+            android:id="@+id/registerUsername"
             style="@style/loginfield"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
@@ -57,9 +57,9 @@
         </EditText>
 
         <EditText
-            android:id="@+id/loginPassword"
+            android:id="@+id/registerPassword"
             style="@style/loginfield"
-            android:layout_below="@id/loginUsername"
+            android:layout_below="@id/registerUsername"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
@@ -68,9 +68,9 @@
         </EditText>
 
         <EditText
-            android:id="@+id/loginPasswordAgain"
+            android:id="@+id/registerPasswordAgain"
             style="@style/loginfield"
-            android:layout_below="@id/loginPassword"
+            android:layout_below="@id/registerPassword"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
@@ -80,10 +80,10 @@
         </EditText>
 
         <Button
-            android:id="@+id/submitLoginButton"
+            android:id="@+id/submitregisterButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/loginPasswordAgain"
+            android:layout_below="@+id/registerPasswordAgain"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="12dp"
