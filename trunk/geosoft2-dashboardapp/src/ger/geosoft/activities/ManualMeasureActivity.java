@@ -1,14 +1,16 @@
 package ger.geosoft.activities;
 
+import ger.geosoft.R;
+
 import java.io.IOException;
 
-import ger.geosoft.R;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -46,6 +48,36 @@ public class ManualMeasureActivity extends Activity implements SurfaceHolder.Cal
   
         //tells Android that this surface will have its data constantly replaced  
         sHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS); 
+        
+//        bmp = BitmapFactory.decodeByteArray(new byte[]{0}, 0,1);
+        
+        mCall = new Camera.PictureCallback()  
+        {  
+        	
+        	
+            @Override  
+            public void onPictureTaken(byte[] data, Camera camera)  
+            {  
+                //decode the data obtained by the camera into a Bitmap 
+            	Log.i("hallo","wat"+data);
+                bmp = BitmapFactory.decodeByteArray(
+                		data,
+                		0,
+                		data.length);  
+                
+                //set the iv_image
+                
+                iv_image.setImageBitmap(bmp); 
+//                iv_image.setImageResource(R.drawable.automeasure_green);
+                
+		        //stop the preview  
+		        mCamera.stopPreview();  
+		        //release the camera  
+		        mCamera.release();  
+		        //unbind the camera from this object  
+		        mCamera = null; 
+            }  
+        };
 		
 	}
 	
@@ -53,8 +85,17 @@ public class ManualMeasureActivity extends Activity implements SurfaceHolder.Cal
 		switch(v.getId()){
 			case R.id.surfaceView:
 				mCamera.takePicture(null, null, mCall);
+//				mCamera.takePicture(null, mCall, mCall);
+				
+				
 				sv.setVisibility(View.GONE);
 				iv_image.setVisibility(View.VISIBLE);
+//		        //stop the preview  
+//		        mCamera.stopPreview();  
+//		        //release the camera  
+//		        mCamera.release();  
+//		        //unbind the camera from this object  
+//		        mCamera = null; 
 			break;
 		}
 	}
@@ -71,17 +112,7 @@ public class ManualMeasureActivity extends Activity implements SurfaceHolder.Cal
         mCamera.startPreview();  
  
         //sets what code should be executed after the picture is taken  
-        mCall = new Camera.PictureCallback()  
-        {  
-            @Override  
-            public void onPictureTaken(byte[] data, Camera camera)  
-            {  
-                //decode the data obtained by the camera into a Bitmap  
-                bmp = BitmapFactory.decodeByteArray(data, 0, data.length);  
-                //set the iv_image  
-                iv_image.setImageBitmap(bmp);  
-            }  
-        };  
+  
 		
 	}
 
@@ -102,12 +133,12 @@ public class ManualMeasureActivity extends Activity implements SurfaceHolder.Cal
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
-        //stop the preview  
-        mCamera.stopPreview();  
-        //release the camera  
-        mCamera.release();  
-        //unbind the camera from this object  
-        mCamera = null; 
+//        //stop the preview  
+//        mCamera.stopPreview();  
+//        //release the camera  
+//        mCamera.release();  
+//        //unbind the camera from this object  
+//        mCamera = null; 
 		
 	}
 	
