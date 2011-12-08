@@ -32,12 +32,12 @@ public class Dashboard extends Activity {
 	}
 
 	public void startViewer(View v){
-		startActivity(new Intent(Dashboard.this, ListActivity.class));
+		startActivity(new Intent(Dashboard.this, ChooseViewActivity.class));
 	}
 	
 	public void startSettings(View v){
 		//TODO Die Kartenansicht dem richtigen Menü zuordnen
-		startActivity(new Intent(Dashboard.this, MapActivity.class));
+		//startActivity(new Intent(Dashboard.this, MapActivity.class));
 	}
 	
 	public void startExit(View v){

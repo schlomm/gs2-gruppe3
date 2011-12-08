@@ -14,7 +14,7 @@
 	<uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/potholeslauncher"
         android:label="@string/app_name"
         android:name=".store.Store" >
         <activity
@@ -30,6 +30,7 @@
         <activity android:name=".activities.LoginActivity" android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity android:name=".activities.RegisterActivity" android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity android:name=".activities.ManualMeasureActivity" android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+        <activity android:name=".activities.ChooseViewActivity" android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity android:name=".activities.MapActivity"></activity>
     </application>
 
