@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/chooseViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="12dp"
+        android:text="View"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:typeface="serif" >
+    </TextView>
+
+    <View
+        android:id="@+id/dashboardline"
+        android:layout_width="200dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="#646464" >
+    </View>
+
+    <ger.geosoft.dashboard.DashboardLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="5dp" >
+
+        <Button
+            android:id="@+id/showListBtn"
+            style="@style/DashboardButton"
+            android:drawableTop="@drawable/dashboard_list"
+            android:onClick="onClick"
+            android:text="List" />
+
+        <Button
+            android:id="@+id/showMapBtn"
+            style="@style/DashboardButton"
+            android:drawableTop="@drawable/dashboard_view"
+            android:onClick="onClick"
+            android:text="Map" />
+    </ger.geosoft.dashboard.DashboardLayout>
+
+</LinearLayout>
