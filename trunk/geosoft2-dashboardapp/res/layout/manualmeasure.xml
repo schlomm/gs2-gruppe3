@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
     <TextView
         android:id="@+id/dashboardTitle"
         android:layout_width="wrap_content"
@@ -40,56 +40,93 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:typeface="serif" />
 
-    <LinearLayout android:layout_below="@id/dashboardline" android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="vertical">
-    
-    <SurfaceView
-        android:id="@+id/surfaceView"
+    <RelativeLayout
+        android:id="@+id/RelativeLayout2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="15dp"
-        android:onClick="onClick">
-    </SurfaceView>
+        android:layout_below="@id/dashboardline" >
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="fill_parent"
-        android:layout_height="250dp"
-        android:scaleType="centerCrop"
-        android:visibility="gone"
-        android:src="@drawable/dashboard_exit">
-    </ImageView>
+        <RelativeLayout
+            android:id="@+id/cameraImageLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
 
-    <RatingBar
-        android:id="@+id/manRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:rating="2.5"
-        android:stepSize="0.5" />
+            <SurfaceView
+                android:id="@+id/surfaceView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_margin="15dp"
+                android:onClick="onClick" >
+            </SurfaceView>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="350dp"
+                android:background="@drawable/tap_to_take_image_bg"
+                android:padding="8dp"
+                android:text="Tap image to take photo" >
+            </TextView>
+        </RelativeLayout>
 
-    <TextView
-        android:id="@+id/manDescriptionTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:textColor="#000000" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/cameraImageLayout"
+            android:layout_margin="15dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone" >
+        </ImageView>
+        <TextView android:id="@+id/taptoretake" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="tap image to retake picture" android:layout_alignRight="@id/imageView" android:layout_alignBottom="@id/imageView" android:visibility="gone" android:background="#AAFFFFFF" />
 
-    <EditText
-        android:id="@+id/manDescriptionEdit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:lines="2"
-        android:hint="type Description here" >
+        <RatingBar
+            android:id="@+id/manRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true"
+            android:rating="2.5"
+            android:stepSize="0.5" />
 
-        <requestFocus />
-    </EditText>
+        <TextView
+            android:id="@+id/manDescriptionTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/manRating"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Description"
+            android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/manSubmitBtn"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:text="Submit" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/manDescriptionEdit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/manDescriptionTv"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:gravity="top"
+            android:hint="type Description here"
+            android:inputType="textMultiLine"
+            android:lines="3" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/manSubmitBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/manDescriptionEdit"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:text="Submit" />
+    </RelativeLayout>
+
 </RelativeLayout>
