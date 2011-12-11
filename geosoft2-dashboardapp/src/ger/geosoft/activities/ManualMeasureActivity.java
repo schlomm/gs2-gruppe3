@@ -1,6 +1,7 @@
 package ger.geosoft.activities;
 
 import ger.geosoft.R;
+import ger.geosoft.store.Store;
 
 import java.io.IOException;
 
@@ -9,7 +10,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -37,10 +40,15 @@ public class ManualMeasureActivity extends Activity implements
 	private Camera mCamera;
 	private Parameters parameters;
 	private Camera.PictureCallback mCall;
+	
+	private Store store;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.manualmeasure);
+		store = (Store) getApplicationContext();
+		if(store.loggedin)Log.i("user",store.getUser().username);
+		Log.i("model",Build.MODEL);
 
 		iv_image = (ImageView) this.findViewById(R.id.imageView);
 		sv = (SurfaceView) this.findViewById(R.id.surfaceView);

@@ -2,6 +2,7 @@ package ger.geosoft.activities;
 
 import ger.geosoft.R;
 import ger.geosoft.store.Store;
+import ger.geosoft.store.User;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -43,18 +44,22 @@ public class RegisterActivity extends Activity {
 	private static final int STATUS_OK = 11;
 	
 	private EditText username;
+	private EditText email;
 	private EditText password;
 	private EditText password2;
 	private Button registerButton;
 	private ProgressDialog progressDialog;
 
+	private Store store;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
+		store = (Store) getApplicationContext();
 		
 		username = (EditText) this.findViewById(R.id.registerUsername);
+		email = (EditText) this.findViewById(R.id.registerEmail); 
 		password = (EditText) this.findViewById(R.id.registerPassword);
 		password2 = (EditText) this.findViewById(R.id.registerPasswordAgain);
 		registerButton = (Button) this.findViewById(R.id.submitregisterButton);
@@ -84,12 +89,12 @@ public class RegisterActivity extends Activity {
 	}
 	
     private void register() {
-    	if (username.getText().toString().equals("")
+    	if (username.getText().toString().equals("") || email.getText().toString().equals("")
 				|| password.getText().toString().equals("") || password2.getText().toString().equals("")) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle("Missing data");
 			builder.setIcon(android.R.drawable.ic_dialog_alert);
-			builder.setMessage("Please enter username and password.")
+			builder.setMessage("Please enter your name, a valid email address and two matching passwords.")
 				.setNeutralButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.cancel();
@@ -107,7 +112,7 @@ public class RegisterActivity extends Activity {
 					}
 				});
 			builder.create().show();
-       	} else if (!(username.getText().toString().contains("@") && username.getText().toString().contains("."))) {
+       	} else if (!(email.getText().toString().contains("@") && email.getText().toString().contains("."))) {
     			AlertDialog.Builder builder = new AlertDialog.Builder(this);
     			builder.setTitle("Please verify Email adress");
     			builder.setIcon(android.R.drawable.ic_dialog_alert);
@@ -124,12 +129,15 @@ public class RegisterActivity extends Activity {
 				public void run() {
 					try {
 						HttpClient httpClient = new DefaultHttpClient();
-						HttpPost postMethod = new HttpPost(Store.url+"register.php");
-						ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>(2);
-				        parameters.add(new BasicNameValuePair("u", username.getText().toString()));
-				        parameters.add(new BasicNameValuePair("p", password.getText().toString()));
-				        parameters.add(new BasicNameValuePair("key",Store.ApplicationKey));
-						postMethod.setEntity(new UrlEncodedFormEntity(parameters));
+						HttpPost postMethod = new HttpPost(Store.url);
+						ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>(6);
+						parameters.add(new BasicNameValuePair("action","register"));
+				        parameters.add(new BasicNameValuePair("key",Store.ApplicationKey));						
+				        parameters.add(new BasicNameValuePair("username", username.getText().toString().trim()));
+				        parameters.add(new BasicNameValuePair("email", email.getText().toString().trim()));
+				        parameters.add(new BasicNameValuePair("password", password.getText().toString()));
+				        parameters.add(new BasicNameValuePair("password2", password2.getText().toString()));
+				        postMethod.setEntity(new UrlEncodedFormEntity(parameters));
 				        HttpResponse response = httpClient.execute(postMethod);
 				        String responseBody = EntityUtils.toString(response.getEntity());
 				        String result = responseBody;
@@ -141,18 +149,8 @@ public class RegisterActivity extends Activity {
 				        } else if (status.equals("STATUS_NOT_VALID")) {
 				        	handler.sendEmptyMessage(STATUS_EMAIL_NOT_VALID);
 				        } else if (status.equals("STATUS_OK")) {
-//				        	User user = null;
-//				        	if (json.has("data")) {
-//				        		JSONObject data = json.getJSONObject("data");
-//				        		if (data.getInt("st") > 3)
-//				        			user = new Student();
-//				        		else
-//				        			user = new Lecturer();
-//				        		user.setUid(data.getLong("uid"));
-//				        		user.setFirstName(data.getString("first_name"));
-//				        		user.setLastName(data.getString("last_name"));
-//				        	}
-//				        	store.setUser(user);
+				        	JSONObject data = json.getJSONObject("data");
+				        	store.setUser(new User(data.getString("username"),data.getString("sessionID"),data.getString("email")));
 				        	handler.sendEmptyMessage(STATUS_OK);
 				        }
 				        progressDialog.dismiss();
@@ -186,7 +184,7 @@ public class RegisterActivity extends Activity {
 						case STATUS_OK:
 							Toast.makeText(
 									getApplicationContext(),
-									"Welcome !", Toast.LENGTH_LONG).show();
+									"Registration successful. Welcome "+store.getUser().username, Toast.LENGTH_LONG).show();
 //							switch (getIntent().getExtras().getInt("startActivity")) {
 //							case START_MYCOURSES:
 //								startActivity(new Intent(getApplicationContext(), MyCourses.class));

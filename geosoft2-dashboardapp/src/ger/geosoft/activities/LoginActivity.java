@@ -2,6 +2,7 @@ package ger.geosoft.activities;
 
 import ger.geosoft.R;
 import ger.geosoft.store.Store;
+import ger.geosoft.store.User;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -43,17 +44,21 @@ public class LoginActivity extends Activity {
 	private static final int STATUS_NOT_VALID = 12;
 	private static final int STATUS_OK = 11;
 
-	private EditText username;
+	private EditText email;
 	private EditText password;
 	private Button loginButton;
 	private ProgressDialog progressDialog;
+	
+	private Store store;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
+		store = (Store) getApplicationContext();
+		 
 		
-		username = (EditText) this.findViewById(R.id.loginUsername);
+		email = (EditText) this.findViewById(R.id.loginEmail);
 		password = (EditText) this.findViewById(R.id.loginPassword);
 		loginButton = (Button) this.findViewById(R.id.submitLoginButton);
 		
@@ -85,7 +90,7 @@ public class LoginActivity extends Activity {
 	}
 	
     private void authenticate() {
-    	if (username.getText().toString().equals("")
+    	if (email.getText().toString().equals("")
 				|| password.getText().toString().equals("")) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle("Missing data");
@@ -103,10 +108,12 @@ public class LoginActivity extends Activity {
 				public void run() {
 					try {
 						HttpClient httpClient = new DefaultHttpClient();
-						HttpPost postMethod = new HttpPost(Store.url+"login.php");
-						ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>(2);
-				        parameters.add(new BasicNameValuePair("u", username.getText().toString()));
-				        parameters.add(new BasicNameValuePair("p", password.getText().toString()));
+						HttpPost postMethod = new HttpPost(Store.url);
+						ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>(4);
+						parameters.add(new BasicNameValuePair("action","login"));
+						parameters.add(new BasicNameValuePair("key",Store.ApplicationKey));
+				        parameters.add(new BasicNameValuePair("email", email.getText().toString()));
+				        parameters.add(new BasicNameValuePair("password", password.getText().toString()));
 						postMethod.setEntity(new UrlEncodedFormEntity(parameters));
 				        HttpResponse response = httpClient.execute(postMethod);
 				        String responseBody = EntityUtils.toString(response.getEntity());
@@ -118,18 +125,10 @@ public class LoginActivity extends Activity {
 				        	handler.sendEmptyMessage(STATUS_NOT_VALID);
 				        }
 				        else if (status.equals("STATUS_OK")) {
-//				        	User user = null;
-//				        	if (json.has("data")) {
-//				        		JSONObject data = json.getJSONObject("data");
-//				        		if (data.getInt("st") > 3)
-//				        			user = new Student();
-//				        		else
-//				        			user = new Lecturer();
-//				        		user.setUid(data.getLong("uid"));
-//				        		user.setFirstName(data.getString("first_name"));
-//				        		user.setLastName(data.getString("last_name"));
-//				        	}
-//				        	store.setUser(user);
+				        	
+				        	JSONObject data = json.getJSONObject("data");
+				        	store.setUser(new User(data.getString("username"),data.getString("sessionID"),data.getString("email")));
+				        		
 				        	handler.sendEmptyMessage(STATUS_OK);
 				        }
 				        progressDialog.dismiss();

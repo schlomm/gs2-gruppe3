@@ -44,23 +44,51 @@
         android:id="@+id/relativeLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" >
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/dashboardline" >
 
-        <EditText
-            android:id="@+id/registerUsername"
-            style="@style/loginfield"
+        <LinearLayout
+            android:id="@+id/emailusernameregisterlayoutland"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="32dp"
-            android:hint="email address"
-            android:inputType="textNoSuggestions|textEmailAddress" >
-        </EditText>
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/registerUsername"
+                style="@style/loginfield"
+                android:layout_width="fill_parent"
+                android:layout_alignBaseline="@+id/registerPasswordAgain"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:nextFocusDown="@id/registerEmail"
+                android:hint="your name"
+                android:inputType="textNoSuggestions|textEmailAddress" >
+            </EditText>
+
+            <EditText
+                android:id="@+id/registerEmail"
+                style="@style/loginfield"
+                android:layout_width="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_below="@id/registerUsername"
+                android:layout_toRightOf="@+id/registerUsername"
+                android:layout_weight="1"
+                android:nextFocusDown="@id/registerPassword"
+                android:hint="email address"
+                android:inputType="textNoSuggestions|textEmailAddress" >
+            </EditText>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/passwordsregisterlayoutland"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/registerUsername"
+            android:layout_below="@id/emailusernameregisterlayoutland"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
@@ -70,10 +98,10 @@
                 android:id="@+id/registerPassword"
                 style="@style/loginfield"
                 android:layout_width="fill_parent"
-                android:layout_weight="1"
                 android:layout_alignBaseline="@+id/registerPasswordAgain"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
+                android:layout_weight="1"
                 android:hint="password"
                 android:inputType="textNoSuggestions|textPassword" >
             </EditText>
@@ -82,9 +110,9 @@
                 android:id="@+id/registerPasswordAgain"
                 style="@style/loginfield"
                 android:layout_width="fill_parent"
-                android:layout_weight="1"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/registerPassword"
+                android:layout_weight="1"
                 android:hint="retype password"
                 android:imeOptions="actionGo"
                 android:inputType="textNoSuggestions|textPassword" >
