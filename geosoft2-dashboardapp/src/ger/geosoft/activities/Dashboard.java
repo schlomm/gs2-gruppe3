@@ -5,8 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.hardware.SensorListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 
@@ -16,7 +14,6 @@ public class Dashboard extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.dashboard);
-		
 	}
 	
 	public void startLogin(View v){
@@ -41,7 +38,7 @@ public class Dashboard extends Activity {
 	}
 	
 	public void startExit(View v){
-
+		
 		new AlertDialog.Builder(this)
 			.setTitle("Sure?")
 			.setMessage("Are you sure you want to quit?")
