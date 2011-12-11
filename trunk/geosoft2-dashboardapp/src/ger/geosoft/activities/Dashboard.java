@@ -41,7 +41,7 @@ public class Dashboard extends Activity {
 		
 		new AlertDialog.Builder(this)
 			.setTitle("Sure?")
-			.setMessage("Are you sure you want to quit th app?")
+			.setMessage("Are you sure you want to quit")
 			.setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					finish();
