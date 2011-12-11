@@ -126,6 +126,7 @@
             android:layout_below="@+id/manDescriptionEdit"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
+            android:onClick="onClick"
             android:text="Submit" />
     </RelativeLayout>
 

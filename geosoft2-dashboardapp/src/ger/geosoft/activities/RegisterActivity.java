@@ -39,9 +39,6 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 public class RegisterActivity extends Activity {
-	private static final int STATUS_EMAIL_NOT_VALID = 13;
-	private static final int STATUS_NOT_VALID = 12;
-	private static final int STATUS_OK = 11;
 	
 	private EditText username;
 	private EditText email;
@@ -77,7 +74,7 @@ public class RegisterActivity extends Activity {
         });
 		
 		progressDialog = new ProgressDialog(this);
-		progressDialog.setMessage("Please wait.");
+		progressDialog.setMessage("Registering.");
 	}
 	
 	public void onClick(View v){
@@ -144,15 +141,16 @@ public class RegisterActivity extends Activity {
 				        Log.i("jsonresult",result);
 				        JSONObject json = new JSONObject(result);
 				        String status = json.getString("status");
-				        if (status.equals("STATUS_NOT_VALID")) {
-				        	handler.sendEmptyMessage(STATUS_NOT_VALID);
-				        } else if (status.equals("STATUS_NOT_VALID")) {
-				        	handler.sendEmptyMessage(STATUS_EMAIL_NOT_VALID);
-				        } else if (status.equals("STATUS_OK")) {
-				        	JSONObject data = json.getJSONObject("data");
-				        	store.setUser(new User(data.getString("username"),data.getString("sessionID"),data.getString("email")));
-				        	handler.sendEmptyMessage(STATUS_OK);
-				        }
+				        
+					        if (status.equals("STATUS_EMAIL_NOT_VALID")) {
+					        	handler.sendEmptyMessage(Store.STATUS_EMAIL_NOT_VALID);
+					        } else if (status.equals("STATUS_EMAIL_ALREADY_REGISTERED")) {
+					        	handler.sendEmptyMessage(Store.STATUS_EMAIL_ALREADY_REGISTERED);
+					        } else if (status.equals("STATUS_OK")) {
+					        	JSONObject data = json.getJSONObject("data");
+					        	store.setUser(new User(data.getString("username"),data.getString("sessionID"),data.getString("email")));
+					        	handler.sendEmptyMessage(Store.STATUS_OK);
+					        }
 				        progressDialog.dismiss();
 					}
 			        catch (UnsupportedEncodingException e) {
@@ -175,13 +173,7 @@ public class RegisterActivity extends Activity {
 	            					"There is a problem with the network connection.", 
 	            					Toast.LENGTH_LONG).show();
 							break;
-						case STATUS_NOT_VALID:
-							Toast.makeText(getApplicationContext(), 
-	            					"This combination of username and password is not valid.", 
-	            					Toast.LENGTH_LONG).show();
-							password.setText("");
-							break;
-						case STATUS_OK:
+						case Store.STATUS_OK:
 							Toast.makeText(
 									getApplicationContext(),
 									"Registration successful. Welcome "+store.getUser().username, Toast.LENGTH_LONG).show();
@@ -201,7 +193,16 @@ public class RegisterActivity extends Activity {
 //							}
 //							finish();
 							break;
+						case Store.STATUS_EMAIL_ALREADY_REGISTERED:
+							Toast.makeText(getApplicationContext(), 
+	            					"Your email address appears to be already registered", 
+	            					Toast.LENGTH_LONG).show();
+							password.setText("");
+							break;							
 						default:
+							Toast.makeText(
+									getApplicationContext(),
+									"There is something very wrong!", Toast.LENGTH_LONG).show();
 							break;
 						}
 	            		progressDialog.dismiss();
