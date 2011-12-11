@@ -41,8 +41,7 @@ import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 	
-	private static final int STATUS_NOT_VALID = 12;
-	private static final int STATUS_OK = 11;
+
 
 	private EditText email;
 	private EditText password;
@@ -122,14 +121,14 @@ public class LoginActivity extends Activity {
 				        JSONObject json = new JSONObject(result);
 				        String status = json.getString("status");
 				        if (status.equals("STATUS_NOT_VALID")) {
-				        	handler.sendEmptyMessage(STATUS_NOT_VALID);
+				        	handler.sendEmptyMessage(Store.STATUS_NOT_VALID);
 				        }
 				        else if (status.equals("STATUS_OK")) {
 				        	
 				        	JSONObject data = json.getJSONObject("data");
 				        	store.setUser(new User(data.getString("username"),data.getString("sessionID"),data.getString("email")));
 				        		
-				        	handler.sendEmptyMessage(STATUS_OK);
+				        	handler.sendEmptyMessage(Store.STATUS_OK);
 				        }
 				        progressDialog.dismiss();
 					}
@@ -153,13 +152,13 @@ public class LoginActivity extends Activity {
 	            					"There is a problem with the network connection.", 
 	            					Toast.LENGTH_LONG).show();
 							break;
-						case STATUS_NOT_VALID:
+						case Store.STATUS_NOT_VALID:
 							Toast.makeText(getApplicationContext(), 
 	            					"This combination of username and password is not valid.", 
 	            					Toast.LENGTH_LONG).show();
 							password.setText("");
 							break;
-						case STATUS_OK:
+						case Store.STATUS_OK:
 							Toast.makeText(
 									getApplicationContext(),
 									"Login successful", Toast.LENGTH_LONG).show();
@@ -180,6 +179,9 @@ public class LoginActivity extends Activity {
 //							finish();
 							break;
 						default:
+							Toast.makeText(
+									getApplicationContext(),
+									"There is something very wrong!", Toast.LENGTH_LONG).show();
 							break;
 						}
 	            		progressDialog.dismiss();

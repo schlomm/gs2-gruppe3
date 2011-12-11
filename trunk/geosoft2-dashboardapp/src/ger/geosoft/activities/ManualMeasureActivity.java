@@ -4,8 +4,10 @@ import ger.geosoft.R;
 import ger.geosoft.store.Store;
 
 import java.io.IOException;
+import java.util.Date;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
@@ -34,6 +36,7 @@ public class ManualMeasureActivity extends Activity implements
 	private RatingBar rating;
 
 	private Bitmap bmp;
+	private Date measurementDate;
 
 	// Camera variables
 	private SurfaceHolder sHolder;
@@ -42,14 +45,13 @@ public class ManualMeasureActivity extends Activity implements
 	private Camera.PictureCallback mCall;
 	
 	private Store store;
+	private ProgressDialog progressDialog;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.manualmeasure);
 		store = (Store) getApplicationContext();
-		if(store.loggedin)Log.i("user",store.getUser().username);
-		Log.i("model",Build.MODEL);
-
+		
 		iv_image = (ImageView) this.findViewById(R.id.imageView);
 		sv = (SurfaceView) this.findViewById(R.id.surfaceView);
 		submit = (Button) this.findViewById(R.id.manSubmitBtn);
@@ -83,14 +85,18 @@ public class ManualMeasureActivity extends Activity implements
 			}
 		};
 		
-
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("Registering.");
 	}
 
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.surfaceView:
 			takePicture();
-
+			break;
+		case R.id.manSubmitBtn:
+			Log.i("manSumbitBtn","pressed");
+			store.submitManualMeasurement(progressDialog, bmp, measurementDate, description.getText().toString().trim(), 52d, 7d, "yet to implement", "yet to implement", rating.getNumStars());
 			break;
 		}
 	}
@@ -112,6 +118,7 @@ public class ManualMeasureActivity extends Activity implements
 
 	private void takePicture() {
 		mCamera.takePicture(null, null, mCall);
+		measurementDate = new Date();
 		cameraImageLayout.setVisibility(View.GONE);
 //		sv.setVisibility(View.GONE);
 		findViewById(R.id.taptoretake).setVisibility(View.VISIBLE);
