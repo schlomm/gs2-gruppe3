@@ -3,6 +3,9 @@ package ger.geosoft.activities;
 import ger.geosoft.R;
 import ger.geosoft.store.Store;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 
@@ -12,8 +15,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -76,6 +79,20 @@ public class ManualMeasureActivity extends Activity implements
 			public void onPictureTaken(byte[] data, Camera camera) {
 				// decode the data obtained by the camera into a Bitmap
 				bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+				
+				String filename = "filename.bmp";
+				File file = new File(Environment.getExternalStorageDirectory(), filename);
+				FileOutputStream fos;
+				try {
+				    fos = new FileOutputStream(file);
+				    fos.write(data);
+				    fos.flush();
+				    fos.close();
+				} catch (FileNotFoundException e) {
+				    // handle exception
+				} catch (IOException e) {
+				    // handle exception
+				}
 
 				// set the iv_image
 
@@ -96,6 +113,7 @@ public class ManualMeasureActivity extends Activity implements
 			break;
 		case R.id.manSubmitBtn:
 			Log.i("manSumbitBtn","pressed");
+			Log.i("image",bmp.toString());
 			store.submitManualMeasurement(progressDialog, bmp, measurementDate, description.getText().toString().trim(), 52d, 7d, "yet to implement", "yet to implement", rating.getNumStars());
 			break;
 		}
