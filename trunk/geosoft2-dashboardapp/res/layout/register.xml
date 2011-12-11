@@ -45,13 +45,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" >
-
+        
         <EditText
-            android:id="@+id/registerUsername"
+            android:id="@+id/registerUsername" 
             style="@style/loginfield"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="32dp"
+            android:hint="your name"
+            android:inputType="textNoSuggestions|textEmailAddress" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/registerEmail" 
+            style="@style/loginfield"
+            android:layout_below="@id/registerUsername"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="8dp"
             android:hint="email address"
             android:inputType="textNoSuggestions|textEmailAddress" >
         </EditText>
@@ -59,7 +70,7 @@
         <EditText
             android:id="@+id/registerPassword"
             style="@style/loginfield"
-            android:layout_below="@id/registerUsername"
+            android:layout_below="@id/registerEmail"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"

@@ -44,10 +44,11 @@
         android:id="@+id/relativeLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" >
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/dashboardline" >
 
         <EditText
-            android:id="@+id/loginUsername"
+            android:id="@+id/loginEmail"
             style="@style/loginfield"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
@@ -59,7 +60,7 @@
         <EditText
             android:id="@+id/loginPassword"
             style="@style/loginfield"
-            android:layout_below="@id/loginUsername"
+            android:layout_below="@id/loginEmail"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"

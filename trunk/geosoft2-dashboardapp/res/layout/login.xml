@@ -47,7 +47,7 @@
         android:layout_centerInParent="true" >
 
         <EditText
-            android:id="@+id/loginUsername"
+            android:id="@+id/loginEmail"
             style="@style/loginfield"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
@@ -59,7 +59,7 @@
         <EditText
             android:id="@+id/loginPassword"
             style="@style/loginfield"
-            android:layout_below="@id/loginUsername"
+            android:layout_below="@id/loginEmail"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
