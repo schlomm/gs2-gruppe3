@@ -2,21 +2,19 @@ package ger.geosoft.activities;
 
 import ger.geosoft.R;
 import android.app.Activity;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Html;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CursorAdapter;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class ListActivity extends Activity {
-
+	private SimpleCursorAdapter adapter = null;
+	private Cursor c = null;
 	SQLiteDatabase myDB = null;
 	final static String MY_DB_NAME = "geosoft";
 	final static String MY_DB_TABLE = "potholes";
@@ -32,15 +30,14 @@ public class ListActivity extends Activity {
 		
 //		tv = (TextView)findViewById(R.id.measurelistTv);
 		
-		Cursor c = myDB.rawQuery("SELECT "+MY_DB_TABLE+".id as _id,* FROM "+ MY_DB_TABLE +";", null);
+		c = myDB.rawQuery("SELECT "+MY_DB_TABLE+".id as _id,* FROM "+ MY_DB_TABLE +";", null);
 		int id = c.getColumnIndex("id");
 		int lat = c.getColumnIndex("lat");
 		int lon = c.getColumnIndex("lon");
 		int strength = c.getColumnIndex("strength");
 //		c.moveToFirst();
-		
-
-		list.setAdapter(new SimpleCursorAdapter(ListActivity.this, R.layout.measurements_list_item, c,new String[]{"lat","lon","strength"} ,new int[]{R.id.lat,R.id.lon, R.id.stren}));
+		adapter = new SimpleCursorAdapter(ListActivity.this, R.layout.measurements_list_item, c,new String[]{"lat","lon","strength"} ,new int[]{R.id.lat,R.id.lon, R.id.stren});
+		list.setAdapter(adapter);
 //		c.close();
 //		if(c.getCount() > 0){
 //			while(!c.isLast()){
@@ -60,4 +57,31 @@ public class ListActivity extends Activity {
 				+ MY_DB_TABLE
 				+ "(id integer primary key autoincrement,lat double(20), lon double(20),strength double(20));");
 	}
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.measurement_list_menu, menu);
+	    return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.measurement_list_reset:
+	        clearDB();
+	        c.requery();
+	        return true;
+	    case R.id.measurement_list_submit:
+	        //TODO submitten, leude
+	        return false;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	private void clearDB() {
+		myDB.delete(MY_DB_TABLE, null, null);
+	}
+
 }

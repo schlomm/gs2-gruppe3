@@ -7,4 +7,6 @@
     <string name="dashboard_automeasure">Automatic</string>
     <string name="dashboard_manumeasure">Manual</string>
     <string name="dashboard_exit">Exit</string>
+    <string name="measurement_list_reset">Reset Database</string>
+    <string name="measurement_list_submit">Submit</string>
 </resources>

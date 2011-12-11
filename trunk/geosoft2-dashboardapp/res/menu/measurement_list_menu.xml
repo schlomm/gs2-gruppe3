@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/measurement_list_reset"
+          android:title="@string/measurement_list_reset" />
+    <item android:id="@+id/measurement_list_submit" android:title="@string/measurement_list_submit"></item>
+</menu>
